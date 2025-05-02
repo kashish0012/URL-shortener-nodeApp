@@ -1,4 +1,4 @@
-# 🔗 Shorten URL App
+# 🔗 URL Shortener App
 
 A simple and secure URL shortening web application built using **Node.js**, **Express**, and **MongoDB**, with **EJS** as the templating engine.
 
