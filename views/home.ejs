@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>URL Shortener App</h1>
+    <div class="center-container">
+        <% if (locals.id) { %>
+            <p> URL Generated: <a href="http://localhost:<%=process.env.PORT %>/url/<%= id %>">http://localhost:<%=process.env.PORT %>/url/<%= id %></a></p><br>
+            <button><a href="/">Go to Home</a></button>
+        <% } else { %>
+            <form method="POST" action="/url">
+                <label for="url">Enter your Original URL</label>
+                <input type="text" name="url" id="url" placeholder="https://example.com" required>
+                <button type="submit">Generate</button>
+            </form>
+            <div class="table-container">
+                <% if (locals.urls) { %>
+                    <table
+                        <thead>
+                            <th>S. No.</th>
+                            <th>Original URL</th>
+                            <th>Shortened URL</th>
+                            <th>Total Visits</th>
+                        </thead>
+                        <tbody>
+                            <% urls.forEach(function(url, index) { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><a href="<%= url.redirectURL %>"><%= url.redirectURL %></a></td>
+                                    <td><a href="http://localhost:<%=process.env.PORT %>/url/<%= url.shortId %>">http://localhost:<%=process.env.PORT %>/url/<%= url.shortId %></a></td>
+                                    <td><%= url.visitHistory.length %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+                <div style="margin-top: 20px;">
+                    <form action="/user/logout" method="POST" style="display: inline;">
+                      <button type="submit" style="width: 100%;">Logout</button>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

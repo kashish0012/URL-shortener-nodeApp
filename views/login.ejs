@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>URL Shorten App</h1>
+    <div class="center-container">
+        <h2>Welcome Back! Login</h2>
+        <% if (error) { %>
+            <p class="error-text">Wrong password</p>
+        <% } %>
+        <form action="/user/login" class="signup-form" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </div>
+</body>
+</html>
